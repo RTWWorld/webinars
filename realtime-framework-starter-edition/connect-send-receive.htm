@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+</head>
+
+<body>
+	<input type="text" id="mensagem" />
+	<input type="button" onclick="sendMessage();" value="Send" />
+	<div id="log"></div>
+
+	<script src="http://code.xrtml.org/xrtml-3.0.0.js"></script>
+	<script>
+		var appkey = 'YOUR_APPLICATION_KEY'; // If you don't have an application key, get it (for free) at www.realtime.co
+		var url = 'http://ortc-developers.realtime.co/server/2.1';
+
+		xRTML.ready(function(){
+
+			xRTML.Config.debug = true;
+
+			xRTML.ConnectionManager.create(
+			{
+				id: 'myConn',
+				appkey: appkey,
+				authToken: 'anything',
+				url: url,
+				channels: [
+					{name: 'user:channel_1'}
+				]
+			}).bind(
+			{
+				message: function(e) {
+					var log = document.getElementById('log');
+					log.innerHTML = log.innerHTML + 'Message received: ' + e.message + '<br />';
+				}
+			});
+
+		});
+
+		function sendMessage(){
+			var msg = document.getElementById('mensagem').value;
+
+			xRTML.ConnectionManager.sendMessage({
+				connections: ['myConn'],
+				channel: 'user:channel_1',
+				content: msg
+			});
+		}
+		
+	</script>
+</body>
+</html>
