@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+</head>
+
+<body>
+	<h1>xRTML Tag: Broadcast</h1>
+
+	<input type="text" id="message" />
+	<input type="button" id="myButton1" value="Update div" />
+	<input type="button" id="myButton2" value="Alert" />
+	<div id="log"></div>
+
+	<script src="http://code.xrtml.org/xrtml-3.0.0.js"></script>
+	<script>
+		var appkey = 'YOUR_APPLICATION_KEY';
+		var url = 'http://ortc-developers.realtime.co/server/2.1';
+		var shoutbox;
+
+		xRTML.load(function(){
+
+			xRTML.Config.debug = true;
+
+			xRTML.ConnectionManager.create(
+			{
+				id: 'myConn',
+				appkey: appkey,
+				authToken: 'anything',
+				url: url,
+				channels: [
+					{name: 'myChannel'}
+				]
+			});
+
+			xRTML.TagManager.create({
+				name: 'Broadcast',
+				connections: ['myConn'],
+				channelid: 'myChannel',
+				dispatchers: [
+				{
+					event: 'click',
+					target: '#myButton1',
+					callback: function () {
+						return xRTML.MessageManager.create({
+							trigger: ['myTrigger1', 'myTrigger2'],
+							action: '',
+							data: {text: document.getElementById('message').value}
+						});
+					}
+				}
+				]
+			});
+
+			xRTML.TagManager.create({
+				name: 'Broadcast',
+				connections: ['myConn'],
+				channelid: 'myChannel',
+				dispatchers: [
+				{
+					event: 'click',
+					target: '#myButton2',
+					callback: function () {
+						return xRTML.MessageManager.create({
+							trigger: 'myTrigger2',
+							action: '',
+							data: {text: document.getElementById('message').value}
+						});
+					}
+				}
+				]
+			});
+
+			xRTML.TagManager.create({
+				name: 'Execute',
+				triggers: ['myTrigger1'],
+				callback: function (data) {
+					document.getElementById('log').innerHTML = data.text;
+				}
+			});
+
+			xRTML.TagManager.create({
+				name: 'Execute',
+				triggers: ['myTrigger2'],
+				callback: function (data) {
+					alert(data.text);
+				}
+			});
+
+		});
+
+	</script>
+</body>
+</html>

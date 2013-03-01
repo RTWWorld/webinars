@@ -28,4 +28,16 @@ This repository will be updated every time we host a new webinar, with both the 
 
 **Slides:** [http://www.slideshare.net/RTWWorld/realtime-framework-webinar-channels-and-security](http://www.slideshare.net/RTWWorld/realtime-framework-webinar-channels-and-security)
 
-**Description:** For our second Webinar, Sérgio talks about channels and security and how you can have full control over your communication by splitting the communication among seceral channels and controlling permissions on those channels.
+**Description:** For our second Webinar, Sérgio talks about channels and security and how you can have full control over your communication by splitting the communication among several channels and controlling permissions on those channels.
+
+----------
+
+###realtime-framework-tags-beginner###
+
+**Date:** February, 28th, 2013
+
+**Video:** [http://youtu.be/GJBwOvXl37c](http://youtu.be/GJBwOvXl37c)
+
+**Slides:** [http://www.slideshare.net/RTWWorld/realtime-framework-webinar-getting-started-with-tags](http://www.slideshare.net/RTWWorld/realtime-framework-webinar-getting-started-with-tags)
+
+**Description:** On this session, viewers are presented with the basics on xRTML tags, how they work and what they do, as well as the xRTML message format, necessary so that tags can do their job.
